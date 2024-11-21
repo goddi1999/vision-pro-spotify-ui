@@ -33,7 +33,7 @@ function App() {
     {
       sonTitle: "Last Last",
       totalPlays: "270 146 246",
-      duration: "2:53",
+      duration: "3:03",
       imgUrl:
         "https://i.scdn.co/image/ab67616d0000b27312ebde47882280b814275600",
     },
@@ -41,7 +41,7 @@ function App() {
     {
       sonTitle: "Last Last",
       totalPlays: "270 146 246",
-      duration: "2:53",
+      duration: "2:63",
       imgUrl:
         "https://i.scdn.co/image/ab67616d0000b27312ebde47882280b814275600",
     },
@@ -67,6 +67,26 @@ function App() {
       duration: "2:53",
       imgUrl: "https://i1.sndcdn.com/artworks-tQ54uRcMTPvv-0-t500x500.jpg",
     },
+
+    {
+      sonTitle: "Giddem",
+      totalPlays: "270 349 246",
+      duration: "2:53",
+      imgUrl: "https://i1.sndcdn.com/artworks-tQ54uRcMTPvv-0-t500x500.jpg",
+    },
+
+    {
+      sonTitle: "More Life",
+      totalPlays: "270 349 246",
+      duration: "2:53",
+      imgUrl: "https://i1.sndcdn.com/artworks-tQ54uRcMTPvv-0-t500x500.jpg",
+    },
+    {
+      sonTitle: "Ph City Vibration",
+      totalPlays: "270 349 246",
+      duration: "2:53",
+      imgUrl: "https://i1.sndcdn.com/artworks-tQ54uRcMTPvv-0-t500x500.jpg",
+    },
   ]);
   return (
     <div className="h-[100vh] text-foreground">
@@ -77,7 +97,7 @@ function App() {
               <img
                 className="h-full object-contain transform scale-150 translate-y-12"
                 src="public/assets/img/burnaboy_thubnail-removebg-preview.png"
-                alt="Burna Boy Thumbnail"
+                alt="Burna Boy"
               />
             </div>
             <div className="relative z-10 flex flex-col gap-2 py-5">
@@ -93,22 +113,25 @@ function App() {
               <p>18,890,500 monthly listeners</p>
             </div>
           </div>
-          <div className="flex items-center gap-5 mx-4 my-5">
-            <button className="bg-green p-3 rounded-full">
-              <Play />
-            </button>
-            <button className="rounded-md px-3 py-2 border-white/40 border-2">
-              Follow
-            </button>
-            <button className="">
-              <Ellipsis className="text-white/70" />
-            </button>
-          </div>
-          <div>
-            <div className="flex">
-              <section className="grow">
-                <p className="px-4 font-bold text-2xl py-2">Popular</p>
-                <div className="overflow-y-scroll max-h-[80%] ">
+
+          <div className="h-[50%] flex flex-col overflow-hidden">
+            <div className="flex items-center gap-5 mx-4 my-5">
+              <button className="bg-green p-3 rounded-full">
+                <Play />
+              </button>
+              <button className="rounded-md px-3 py-2 border-white/40 border-2">
+                Follow
+              </button>
+              <button className="">
+                <Ellipsis className="text-white/70" />
+              </button>
+            </div>
+
+            <div className="flex flex-1 overflow-hidden">
+              <section className="grow flex flex-col gap-3">
+                <p className="px-4 font-bold text-2xl">Popular</p>
+
+                <div className="flex-1 overflow-y-auto ">
                   <table className="text-sm w-full">
                     <tbody>
                       {songTracks.map((track, index) => (
@@ -118,7 +141,7 @@ function App() {
                             <img
                               src={track.imgUrl}
                               alt={`${track.sonTitle} thumbnail`}
-                              className=" h-12 w-12 object-cover rounded-full"
+                              className="h-12 w-12 object-cover rounded-full"
                             />
                           </td>
                           <th
@@ -139,13 +162,14 @@ function App() {
                   </table>
                 </div>
               </section>
-              <section className="border-s-2 border-white/10 px-4">
+
+              <section className="border-s-2 border-white/10 px-4 flex flex-col  gap-3 h-full">
                 <p className="font-bold text-xl">On Tour</p>
-                <div className="overflow-scroll p-4 flex flex-col gap-3">
+                <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-3">
                   {tourDates.map((tour, index) => (
                     <div
                       key={index}
-                      className="flex gap-3 items-center  border-gray-700"
+                      className="flex gap-3 items-center border-gray-700"
                     >
                       <div className="flex flex-col gap-1 items-center rounded-2xl bg-black/70 px-4 py-2">
                         <p className="text-xs">{tour.date}</p>
