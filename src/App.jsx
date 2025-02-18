@@ -1,5 +1,9 @@
 import { Play, Ellipsis } from "lucide-react";
-import { useState } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(useGSAP)
 
 function App() {
   const [tourDates, setTourDates] = useState([
@@ -88,14 +92,55 @@ function App() {
       imgUrl: "https://i1.sndcdn.com/artworks-tQ54uRcMTPvv-0-t500x500.jpg",
     },
   ]);
+
+  const burnaTextRef = useRef();
+  const verifiedTextRef = useRef();
+  const verifiedRef = useRef();
+  const listenersRef = useRef();
+  const playBtnRef = useRef();
+  const playBtnIconRef = useRef();
+  const ellipsisRef = useRef();
+  const ellipsisIconRef = useRef();
+  const followBtnRef = useRef();
+  const followBtnTextRef = useRef();
+  const popularRef = useRef();
+  const onTourRef = useRef();
+  const tourRef = useRef();
+  const tableRef = useRef(null);
+  const containerRef = useRef(null);
+  const burnaImgRef = useRef(null);
+  
+  useGSAP(() => {
+    gsap.from(containerRef.current, { scale: 0.2,  opacity: 0, duration: 0.9, ease: "power3.out"} );
+    gsap.from(burnaImgRef.current, { scale: 0.2,  opacity: 0, duration: 0.9, ease: "power3.out"},"=-0.9" );
+    gsap.from(verifiedRef.current, { scale: -0.2,  opacity: 0, duration: 1.2, ease: "elastic.out"},"=-0.2" );
+    gsap.from(verifiedTextRef.current, { x: 20,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-0.7" );
+    gsap.from(burnaTextRef.current, { y: 20,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-0.9" );
+    gsap.from(listenersRef.current, { x: 20,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-0.5" );
+    gsap.from(playBtnRef.current, { scale: 0.2,  opacity: 0, duration: 1.2, ease: "elastic.out"},"=-0.5" );
+    gsap.from(followBtnRef.current, { scale: 0.2,  opacity: 0, duration: 1.2, ease: "elastic.out"},"=-0.5" );
+    gsap.from(playBtnIconRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(followBtnTextRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(ellipsisIconRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(popularRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(onTourRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(tableRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+    gsap.from(tourRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
+  }); 
+
+
+  
+
   return (
     <div className="h-[100vh] text-foreground">
-      <div className="bg-hero-img w-full h-full bg-cover p-6 bg-center ">
-        <div className="max-w-[1020px]   mx-auto rounded-3xl h-full backdrop-blur-xl bg-black/40">
+      <div className="bg-hero-img w-full h-full bg-cover p-6 bg-center relative">
+        <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
+        <div ref={containerRef} className="max-w-[1020px] mx-auto rounded-3xl h-full backdrop-blur-xl bg-black/40 z-10">
           <div className="relative pl-4 rounded-tl-3xl rounded-tr-3xl h-[50%] backdrop-blur-xl bg-black/4 flex items-end">
-            <div className="absolute inset-0 -z-10  h-full flex justify-end overflow-hidden">
+            <div className="absolute inset-0 -z-10 h-full flex justify-end overflow-hidden">
               <img
-                className="h-full object-contain transform scale-150 translate-y-12"
+                ref={burnaImgRef}
+                className="h-full object-contain transform scale-150 translate-y-12 animate-fade-in-to z-0"
                 src="public/assets/img/burnaboy_thubnail-removebg-preview.png"
                 alt="Burna Boy"
               />
@@ -103,36 +148,35 @@ function App() {
             <div className="relative z-10 flex flex-col gap-2 py-5">
               <div className="flex gap-1 items-center">
                 <img
+                  ref={verifiedRef}
                   className="h-6 w-6"
                   src="public/assets/img/icons8-verified-48.png"
                   alt="Verified Icon"
                 />
-                <p className="text-xs">Verified artist</p>
+                <p ref={verifiedTextRef} className="text-xs">Verified artist</p>
               </div>
-              <p className="font-bold text-8xl">Burna Boy</p>
-              <p>18,890,500 monthly listeners</p>
+              <p ref={burnaTextRef} className="font-bold text-8xl">Burna Boy</p>
+              <p ref={listenersRef} className="text-xs">18,890,500 monthly listeners</p>
             </div>
           </div>
 
           <div className="h-[50%] flex flex-col overflow-hidden">
             <div className="flex items-center gap-5 mx-4 my-5">
-              <button className="bg-green p-3 rounded-full">
-                <Play />
+              <button ref={playBtnRef} className="bg-green p-3 rounded-full">
+                <Play ref={playBtnIconRef} />
               </button>
-              <button className="rounded-md px-3 py-2 border-white/40 border-2">
-                Follow
+              <button ref={followBtnRef} className="rounded-md px-3 py-2 border-white/40 border-2">
+                <p ref={followBtnTextRef} className="text-xs">Follow</p>
               </button>
-              <button className="">
-                <Ellipsis className="text-white/70" />
+              <button ref={ellipsisRef}>
+                <Ellipsis ref={ellipsisIconRef} className="text-white/70" />
               </button>
             </div>
-
             <div className="flex flex-1 overflow-hidden">
               <section className="grow flex flex-col gap-3">
-                <p className="px-4 font-bold text-2xl">Popular</p>
-
+                <p ref={popularRef} className="px-4 font-bold text-2xl">Popular</p>
                 <div className="flex-1 overflow-y-auto ">
-                  <table className="text-sm w-full">
+                  <table className="text-sm w-full" ref={tableRef}>
                     <tbody>
                       {songTracks.map((track, index) => (
                         <tr key={index}>
@@ -162,10 +206,9 @@ function App() {
                   </table>
                 </div>
               </section>
-
               <section className="border-s-2 border-white/10 px-4 flex flex-col  gap-3 h-full">
-                <p className="font-bold text-xl">On Tour</p>
-                <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-3">
+                <p ref={onTourRef} className="font-bold text-xl">On Tour</p>
+                <div className="overflow-y-auto flex-1 p-4 flex flex-col gap-3" ref={tourRef}>
                   {tourDates.map((tour, index) => (
                     <div
                       key={index}
