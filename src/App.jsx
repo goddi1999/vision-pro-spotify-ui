@@ -128,9 +128,6 @@ function App() {
     gsap.from(tourRef.current, { x: -10,  opacity: 0, duration: 1.2, ease: "power3.out"},"=-1" );
   }); 
 
-
-  
-
   return (
     <div className="h-[100vh] text-foreground">
       <div className="bg-hero-img w-full h-full bg-cover p-6 bg-center relative">
