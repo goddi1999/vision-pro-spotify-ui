@@ -138,7 +138,7 @@ function App() {
               <img
                 ref={burnaImgRef}
                 className="h-full object-contain transform scale-150 translate-y-12 animate-fade-in-to z-0"
-                src="public/assets/img/burnaboy_thubnail-removebg-preview.png"
+                src="/assets/img/burnaboy_thubnail-removebg-preview.png"
                 alt="Burna Boy"
               />
             </div>
@@ -147,7 +147,7 @@ function App() {
                 <img
                   ref={verifiedRef}
                   className="h-6 w-6"
-                  src="public/assets/img/icons8-verified-48.png"
+                  src="/assets/img/icons8-verified-48.png"
                   alt="Verified Icon"
                 />
                 <p ref={verifiedTextRef} className="text-xs">Verified artist</p>
